@@ -12,23 +12,19 @@ env:
   DOCKER_REPO: repo1
   APP_NAME: app1
   
-
 jobs:
   docker_build:
     name: Docker Build & Push 
     runs-on: ubuntu-latest
     steps:
 
-      # Code checkout
       - name: Checkout the Branch
         uses: actions/checkout@v2
 
-      # Docker login
       - name: Docker Login to Jfrog Artifactory
         run: |
           docker login -u "${{ secrets.USERNAME }}" -p "${{ secrets.PASSWORD }}" artifactory.jfrog.io
         
-      # Build, Tag & Push Docker Image
       - name: Docker Build, Tag & Push to JFrog Artifactory  
         run: |
          docker build --no-cache -f ./Dockerfile -t artifactory.jfrog.io/${{ env.DOCKER_REPO }}/${{ env.APP_NAME }}:${{ github.event.inputs.tag }} .
