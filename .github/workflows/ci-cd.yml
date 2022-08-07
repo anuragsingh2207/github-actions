@@ -1,4 +1,4 @@
-name: Build, Tag & Push Custom HTTPD Docker Image to JFrog Artifactory  
+name: Docker Build & Push 
 
 on:
   workflow_dispatch:
@@ -14,8 +14,8 @@ env:
   
 
 jobs:
-  Build_Tag_Push_Docker_Image:
-    name: Build, Tag & Push Docker Image to JFrog Artifactory 
+  docker_build:
+    name: Docker Build & Push 
     runs-on: ubuntu-latest
     steps:
 
@@ -24,13 +24,13 @@ jobs:
         uses: actions/checkout@v2
 
       # Docker login
-      - name: Docker Login 
+      - name: Docker Login to Jfrog Artifactory
         run: |
            echo "Logged in to Docker " 
           # docker login -u "${{ secrets.USERNAME }}" -p "${{ secrets.PASSWORD }}" artifactory.jfrog.io
         
       # Build, Tag & Push Docker Image
-      - name: Build, Tag and Push Docker Image to JFrog Artifactory  
+      - name: Docker Build, Tag & Push to JFrog Artifactory  
         run: |
           echo "Docker Image Built & Pushed to Jfrog Artifactory"
         #  docker build --no-cache -f ./Dockerfile -t artifactory.jfrog.io/${{ env.DOCKER_REPO }}/${{ env.APP_NAME }}:${{ github.event.inputs.tag }} .
