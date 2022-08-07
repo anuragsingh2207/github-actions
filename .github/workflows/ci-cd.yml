@@ -26,12 +26,10 @@ jobs:
       # Docker login
       - name: Docker Login to Jfrog Artifactory
         run: |
-           echo "Logged in to Docker " 
-          # docker login -u "${{ secrets.USERNAME }}" -p "${{ secrets.PASSWORD }}" artifactory.jfrog.io
+          docker login -u "${{ secrets.USERNAME }}" -p "${{ secrets.PASSWORD }}" artifactory.jfrog.io
         
       # Build, Tag & Push Docker Image
       - name: Docker Build, Tag & Push to JFrog Artifactory  
         run: |
-          echo "Docker Image Built & Pushed to Jfrog Artifactory"
-        #  docker build --no-cache -f ./Dockerfile -t artifactory.jfrog.io/${{ env.DOCKER_REPO }}/${{ env.APP_NAME }}:${{ github.event.inputs.tag }} .
-        #  docker push artifactory.jfrog.io/${{ env.DOCKER_REPO }}/${{ env.APP_NAME }}:${{ github.event.inputs.tag }}
+         docker build --no-cache -f ./Dockerfile -t artifactory.jfrog.io/${{ env.DOCKER_REPO }}/${{ env.APP_NAME }}:${{ github.event.inputs.tag }} .
+         docker push artifactory.jfrog.io/${{ env.DOCKER_REPO }}/${{ env.APP_NAME }}:${{ github.event.inputs.tag }}
