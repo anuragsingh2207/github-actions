@@ -40,18 +40,19 @@ jobs:
         run: |
             echo "${{ env.FIRST_COMMIT }}"
 
-      # - name: Fetch First Commit 
-      #   run: |
-      #     echo "Printing command output"
-      #     git rev-list --max-parents=0 HEAD
-      #     COMMIT=$(git rev-list --max-parents=0 HEAD)
-      #     export $COMMIT
-      #     echo "Printing COMMIT"
-      #     echo $COMMIT
-      #     echo "FIRST_COMMIT=$(git rev-list --max-parents=0 HEAD)" >> $GITHUB_ENV
-      #     echo "Printing the First Commit GitHub Env Var"
-      #     echo "${{ env.FIRST_COMMIT  }}"
-      #     echo "Printing the  Commit System Env Var"
+  build2:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+
+      - name: Print First Commit from Previous Job
+        run: |
+            echo "${{ needs.build.env.FIRST_COMMIT }}"          
+
+      
           
          
         
