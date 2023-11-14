@@ -32,14 +32,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set the value
+      - name: Get First Commit 
         run: |
-            git branch
-            echo "STATUS=$(git branch)" >> $GITHUB_ENV
+            echo "FIRST_COMMIT=$(git rev-list --max-parents=0 HEAD)" >> $GITHUB_ENV
 
-      - name: Use the value
+      - name: Print First Commit 
         run: |
-            echo "${{ env.STATUS }}"
+            echo "${{ env.FIRST_COMMIT }}"
 
       # - name: Fetch First Commit 
       #   run: |
