@@ -27,12 +27,15 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs: 
+      FIRST_COMMIT: ${{ steps.set_first_commit.outputs.FIRST_COMMIT }}
     steps:
 
       - name: Checkout code
         uses: actions/checkout@v3
 
       - name: Get First Commit 
+        id: set_first_commit
         run: |
             echo "FIRST_COMMIT=$(git rev-list --max-parents=0 HEAD)" >> $GITHUB_ENV
 
@@ -42,6 +45,7 @@ jobs:
 
   build2:
     runs-on: ubuntu-latest
+    needs: build
     steps:
 
       - name: Checkout code
@@ -50,7 +54,7 @@ jobs:
 
       - name: Print First Commit from Previous Job
         run: |
-            echo "${{ needs.build.env.FIRST_COMMIT }}"          
+            echo "${{ needs.build.outputs.FIRST_COMMIT }}"          
 
       
           
