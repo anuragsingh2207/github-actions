@@ -39,7 +39,7 @@ jobs:
           COMMIT=$(git rev-list --max-parents=0 HEAD)
           echo "Printing COMMIT"
           echo $COMMIT
-          echo "FIRST_COMMIT=$COMMIT" >> GITHUB_ENV
+          echo "FIRST_COMMIT=$COMMIT" >> $GITHUB_ENV
           echo "Printing the First Commit..."
           echo ${{ env.FIRST_COMMIT  }}
          
