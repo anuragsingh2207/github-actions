@@ -34,8 +34,10 @@ jobs:
 
       - name: Fetch First Commit 
         run: |
-          echo "FIRST_COMMIT=$(git rev-list --max-parents=0 HEAD) " >> GITHUB_ENV
-          echo "Printing the First Commit"
+          echo "FIRST_COMMIT=$(git rev-list --max-parents=0 HEAD)" >> GITHUB_ENV
+          echo "Printing the First Commit from GitHub Environment Variable"
           echo ${{ env.FIRST_COMMIT  }}
+          echo "Printing the First Commit from System Environment Variable"
+          echo $FIRST_COMMIT 
         
       
