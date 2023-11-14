@@ -22,8 +22,7 @@ name: Fetching the first commit on the branch
 
 on:
   push:
-    
-  
+    branches: *
   
 jobs:
   build:
