@@ -37,7 +37,7 @@ jobs:
       - name: Get First Commit 
         id: set_first_commit
         run: |
-            echo "FIRST_COMMIT=$(git rev-list --max-parents=0 HEAD)" >> $GITHUB_ENV
+            echo "FIRST_COMMIT=$(git rev-list --max-parents=0 HEAD)" >> $GITHUB_OUTPUT
 
       - name: Print First Commit 
         run: |
