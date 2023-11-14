@@ -40,8 +40,10 @@ jobs:
           echo "Printing COMMIT"
           echo $COMMIT
           echo "FIRST_COMMIT=$COMMIT" >> $GITHUB_ENV
-          echo "Printing the First Commit..."
-          echo ${{ env.FIRST_COMMIT  }}
+          echo "Printing the First Commit GitHub Env Var"
+          echo "${{ env.FIRST_COMMIT  }}"
+          echo "Printing the First Commit System Env Var"
+          echo $FIRST_COMMIT
          
         
       
