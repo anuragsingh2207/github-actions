@@ -32,18 +32,28 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Fetch First Commit 
+      - name: Set the value
+        id: step_one
         run: |
-          echo "Printing command output"
-          git rev-list --max-parents=0 HEAD
-          COMMIT=$(git rev-list --max-parents=0 HEAD)
-          echo "Printing COMMIT"
-          echo $COMMIT
-          echo "FIRST_COMMIT=`echo $COMMIT`" >> $GITHUB_ENV
-          echo "Printing the First Commit GitHub Env Var"
-          echo "${{ env.FIRST_COMMIT  }}"
-          echo "Printing the First Commit System Env Var"
-          echo $FIRST_COMMIT
+            echo "FOO=$(git status)" >> $GITHUB_ENV
+      - name: Use the value
+        id: step_two
+        run: |
+            echo "${{ env.FOO }}"
+
+      # - name: Fetch First Commit 
+      #   run: |
+      #     echo "Printing command output"
+      #     git rev-list --max-parents=0 HEAD
+      #     COMMIT=$(git rev-list --max-parents=0 HEAD)
+      #     export $COMMIT
+      #     echo "Printing COMMIT"
+      #     echo $COMMIT
+      #     echo "FIRST_COMMIT=$(git rev-list --max-parents=0 HEAD)" >> $GITHUB_ENV
+      #     echo "Printing the First Commit GitHub Env Var"
+      #     echo "${{ env.FIRST_COMMIT  }}"
+      #     echo "Printing the  Commit System Env Var"
+          
          
         
       
