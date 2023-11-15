@@ -1,4 +1,4 @@
-name: Workflow 2 
+name: Workflow 0 
 on:
   workflow_dispatch:
     inputs:
@@ -10,8 +10,6 @@ on:
 jobs:
   build4:
     runs-on: ubuntu-latest
-    outputs: 
-      FIRST_COMMIT: ${{ steps.set_first_commit.outputs.FIRST_COMMIT }}
     steps:
 
       - name: Checkout code

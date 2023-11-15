@@ -37,9 +37,9 @@ jobs:
       needs: build
       steps:
         - name: Call Workflow 2
-          uses: ./.github/workflows/ci2.yml
+          uses: ./.github/actions/ci2
           with:
-            # workflow: reusable-workflow.yml
+            # workflow: ci2.yml
             inputs: |
               commit_id=${{ needs.build.outputs.FIRST_COMMIT }}
           
