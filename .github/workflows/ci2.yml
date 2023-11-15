@@ -16,5 +16,5 @@ jobs:
 
       - name: Print received commit_id from Workflow 1
         run: |
-            echo "${{ github.event.inputs.commit_id }}"
+            echo "${{ inputs.commit_id }}"
      

@@ -35,9 +35,8 @@ jobs:
   build3:
     needs: build1
     uses: ./.github/workflows/ci2.yml
-    with:
-      inputs: 
-        commit_id=${{ needs.build.outputs.FIRST_COMMIT }}
+    with: 
+        commit_id: ${{ needs.build.outputs.FIRST_COMMIT }}
 
       
           
