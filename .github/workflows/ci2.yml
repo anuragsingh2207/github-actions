@@ -3,8 +3,8 @@ on:
   workflow_call:
     inputs:
       commit_id:
-       type: string
-       description: 'First Commit from Workflow1'
+        required: true
+        type: string
 
 jobs:
   build4:
