@@ -33,16 +33,11 @@ jobs:
             echo "${{ needs.build.outputs.FIRST_COMMIT }}"  
 
   build3:
-      runs-on: ubuntu-latest
-      needs: build
-      steps:
-        - name: Call Workflow 2
-          uses: ./.github/actions/ci2
-          with:
-            # workflow: ci2.yml
-            inputs: |
+    needs: build
+    uses: ./.github/workflows/ci2.yml
+    with:
+      inputs: |
               commit_id=${{ needs.build.outputs.FIRST_COMMIT }}
-          
 
       
           

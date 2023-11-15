@@ -1,11 +1,10 @@
-name: Workflow 0 
+name: Workflow 2
 on:
   workflow_dispatch:
     inputs:
       commit_id:
        type: string
        description: 'First Commit from Workflow1'
-
 
 jobs:
   build4:
