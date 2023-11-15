@@ -1,24 +1,4 @@
-# name: Scheduled GitHub Action
-
-# on:
-#   schedule:
-#     - cron: '*/15 * * * *'  # Runs at every 15th min
-  
-  
-# jobs:
-#   build:
-#     runs-on: ubuntu-latest
-#     steps:
-
-#       - name: Checkout code
-#         uses: actions/checkout@v3
-
-#       - name: Print Message
-#         run: |
-#           echo "Hello World from scheduled GitHub Actions" 
-
-
-name: Fetching the first commit on the branch 
+name: Workflow 1
 
 on:
   push:
@@ -51,10 +31,20 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-
       - name: Print First Commit from Previous Job
         run: |
-            echo "${{ needs.build.outputs.FIRST_COMMIT }}"          
+            echo "${{ needs.build.outputs.FIRST_COMMIT }}"  
+
+build3:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call Workflow 2
+        uses: ./.github/workflows/ci2.yml
+        with:
+          # workflow: reusable-workflow.yml
+          inputs: |
+            commit_id=${{ needs.build.outputs.FIRST_COMMIT }}
+          
 
       
           

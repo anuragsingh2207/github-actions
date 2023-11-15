@@ -1,0 +1,23 @@
+name: Workflow 2 
+on:
+  workflow_dispatch:
+    inputs:
+      commit_id:
+       type: string
+       description: 'First Commit from Workflow1'
+
+
+jobs:
+  build3:
+    runs-on: ubuntu-latest
+    outputs: 
+      FIRST_COMMIT: ${{ steps.set_first_commit.outputs.FIRST_COMMIT }}
+    steps:
+
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Print received commit_id from Workflow 1
+        run: |
+            echo ${{ github.event.inputs.commit_id }}
+     
