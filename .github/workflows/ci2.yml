@@ -1,6 +1,6 @@
 name: Workflow 2
 on:
-  workflow_dispatch:
+  workflow_call:
     inputs:
       commit_id:
        type: string
