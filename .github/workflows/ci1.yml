@@ -16,10 +16,11 @@ jobs:
         id: set_first_commit
         run: |
             echo "FIRST_COMMIT=$(git rev-list --max-parents=0 HEAD)" >> $GITHUB_OUTPUT
+            echo "FIRST_COMMIT1=$(git rev-list --max-parents=0 HEAD)" >> $GITHUB_ENV
 
       - name: Print First Commit 
         run: |
-            echo "${{ env.FIRST_COMMIT }}"
+            echo "${{ env.FIRST_COMMIT1 }}"
 
   build2:
     runs-on: ubuntu-latest
