@@ -1,0 +1,52 @@
+name: New Workflow 
+on:
+  workflow_dispatch:
+    inputs:
+      first_release:
+        type: choice
+        description: 'first release'     
+        required: true
+        default: 'false'
+        options:
+          - true
+          - false
+      previous_release_tag:
+        type: string
+        description: 'first release'     
+        required: true
+        default: 'test'
+        
+  
+jobs:
+  build1:
+    runs-on: ubuntu-latest
+    outputs: 
+      FIRST_COMMIT: ${{ steps.set_first_commit.outputs.FIRST_COMMIT }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Get First Commit 
+        id: set_first_commit
+        run: |
+            echo "${{ github.event.inputs.previous_release_tag}}"
+            if ${{ github.event.inputs.first_release}} == "true"
+            then 
+              echo "FIRST_COMMIT=$(git rev-list --max-parents=0 HEAD)" >> $GITHUB_OUTPUT
+            else
+              echo "FIRST_COMMIT=${{ github.event.inputs.previous_release_tag}}" >> $GITHUB_OUTPUT
+            fi
+
+
+  build2:
+    runs-on: ubuntu-latest
+    needs: build1
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Print First Commit from Previous Job
+        run: |
+            echo "${{ needs.build1.outputs.FIRST_COMMIT }}"  
+
+  
