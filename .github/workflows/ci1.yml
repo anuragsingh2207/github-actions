@@ -21,7 +21,7 @@ jobs:
       - name: Print First Commit 
         run: |
             echo "${{ env.FIRST_COMMIT1 }}"
-            echo "Print GitHub Branch Name"
+            echo "Print the branch name"
             echo "${{ github.ref_name }}"
 
   build2:
@@ -39,7 +39,7 @@ jobs:
     needs: build1
     uses: ./.github/workflows/ci2.yml
     with: 
-        commit_id: ${{ github.ref_name }}
+        commit_id: ${{ needs.build1.outputs.FIRST_COMMIT }}
 
       
           
