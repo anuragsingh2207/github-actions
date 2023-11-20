@@ -29,7 +29,6 @@ jobs:
       - name: Get First Commit 
         id: set_first_commit
         run: |
-            echo "${{ github.event.inputs.previous_release_tag}}"
             if ${{ github.event.inputs.first_release}} == "true"
             then 
               echo "FIRST_COMMIT=$(git rev-list --max-parents=0 HEAD)" >> $GITHUB_OUTPUT
