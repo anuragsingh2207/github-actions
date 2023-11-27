@@ -33,16 +33,16 @@ jobs:
 
       - name: Get First Commit 
         id: set_base_tag
-        if: ${{ github.event.inputs.push_image != 'false'}}
+        if: ${{ inputs.push_image != 'false'}}
         run: |
-            echo "${{ github.event.inputs.push_image}}"
-            echo "FR:${{ github.event.inputs.first_release}}"
-            echo "PR:${{ github.event.inputs.previous_release_tag}}"
-            if ${{ github.event.inputs.first_release}} == "true"
+            echo "PI:${{ inputs.push_image}}"
+            echo "FR:${{ inputs.first_release}}"
+            echo "PR:${{ inputs.previous_release_tag}}"
+            if ${{ inputs.first_release}} == "true"
             then 
               echo "base_tag=$(git rev-list --max-parents=0 HEAD)" >> $GITHUB_OUTPUT
             else
-              echo "base_tag=${{ github.event.inputs.previous_release_tag}}" >> $GITHUB_OUTPUT
+              echo "base_tag=${{ inputs.previous_release_tag }}" >> $GITHUB_OUTPUT
             fi
 
 
