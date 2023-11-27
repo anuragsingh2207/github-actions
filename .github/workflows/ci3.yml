@@ -22,7 +22,7 @@ on:
 jobs:
   build1:
     runs-on: ubuntu-latest
-    if: github.event_name == "release"
+    if: github.event_name == 'release'
     outputs: 
       base_tag: ${{ steps.set_base_tag.outputs.base_tag }}
     steps:
