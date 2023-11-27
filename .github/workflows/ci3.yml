@@ -48,7 +48,7 @@ jobs:
             echo "ENV FR:${{ env.first_release}}"
             echo "Input PR:${{ inputs.previous_release_tag}}"
             echo "Env PR:${{ env.previous_release_tag}}"
-            if ${{ inputs.first_release}} == "true"
+            if ${{ env.first_release}} == "true"
             then 
               echo "base_tag=$(git rev-list --max-parents=0 HEAD)" >> $GITHUB_OUTPUT
             else
