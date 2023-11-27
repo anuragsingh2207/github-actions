@@ -1,39 +1,41 @@
-name: New Workflow 
+name: Workflow 3
 on:
   workflow_dispatch:
     inputs:
       first_release:
-        type: choice
-        description: 'first release'     
+        description: 'first release'  
+        default: 'false'   
         required: true
-        default: 'false'
-        options:
-          - true
-          - false
+        
+       
+
       previous_release_tag:
         type: string
-        description: 'first release'     
+        description: 'first release' 
+        default: 'test'    
         required: true
-        default: 'test'
+        
         
   
 jobs:
   build1:
     runs-on: ubuntu-latest
     outputs: 
-      FIRST_COMMIT: ${{ steps.set_first_commit.outputs.FIRST_COMMIT }}
+      base_tag: ${{ steps.set_first_commit.outputs.base_tag }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
       - name: Get First Commit 
-        id: set_first_commit
+        id: base_tag
         run: |
+            echo "FR:${{ github.event.inputs.first_release}}"
+            echo "PR:${{ github.event.inputs.previous_release_tag}}"
             if ${{ github.event.inputs.first_release}} == "true"
             then 
-              echo "FIRST_COMMIT=$(git rev-list --max-parents=0 HEAD)" >> $GITHUB_OUTPUT
+              echo "base_tag=$(git rev-list --max-parents=0 HEAD)" >> $GITHUB_OUTPUT
             else
-              echo "FIRST_COMMIT=${{ github.event.inputs.previous_release_tag}}" >> $GITHUB_OUTPUT
+              echo "base_tag=${{ github.event.inputs.previous_release_tag}}" >> $GITHUB_OUTPUT
             fi
 
 
@@ -46,6 +48,6 @@ jobs:
 
       - name: Print First Commit from Previous Job
         run: |
-            echo "${{ needs.build1.outputs.FIRST_COMMIT }}"  
+            echo "${{ needs.build1.outputs.base_tag }}"  
 
   
