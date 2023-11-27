@@ -35,6 +35,7 @@ jobs:
         id: set_base_tag
         if: ${{ github.event.inputs.push_image != 'false'}}
         run: |
+            echo "${{ github.event.inputs.push_image}}"
             echo "FR:${{ github.event.inputs.first_release}}"
             echo "PR:${{ github.event.inputs.previous_release_tag}}"
             if ${{ github.event.inputs.first_release}} == "true"
