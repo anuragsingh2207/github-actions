@@ -40,7 +40,7 @@ jobs:
 
       - name: Set base_tag
         id: set_base_tag
-        if: github.event.inputs.push_image == ''                                    # github.event.inputs.push_image != '' || github.event.inputs.push_image == 'true' 
+        if: github.event.inputs.push_image == ''    # github.event.inputs.push_image != '' || github.event.inputs.push_image == 'true' 
         run: |
             echo "Input PI:${{ inputs.push_image}}"
             echo "ENV PI:${{ env.push_image}}"
