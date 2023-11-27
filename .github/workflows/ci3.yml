@@ -33,7 +33,7 @@ jobs:
 
       - name: Get First Commit 
         id: set_base_tag
-        if: ${{ inputs.push_image != 'false'}}
+        if: ${{ inputs.push_image != 'false'}} && ${{ inputs.push_image != ' '}}
         run: |
             echo "PI:${{ inputs.push_image}}"
             echo "FR:${{ inputs.first_release}}"
