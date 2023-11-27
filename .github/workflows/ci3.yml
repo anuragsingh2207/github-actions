@@ -18,7 +18,14 @@ on:
         required: true
 
   release:
-    types: [published]      
+    types: [published] 
+
+  env:
+    push_image: ${{ github.event_name == 'release' && 'true' || inputs.push_image }}
+    first_release: ${{ github.event_name == 'release' && 'false' || inputs.first_release }}
+    previous_release_tag: ${{ github.event_name == 'release' && 'test' || inputs.previous_release_tag }}
+
+
         
   
 jobs:
@@ -31,18 +38,21 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Get First Commit 
+      - name: Set base_tag
         id: set_base_tag
-        if: github.event.inputs.push_image == 'true' #&& github.event.inputs.push_image != ''
+        if:  github.event.inputs.push_image != '' #U|| github.event.inputs.push_image == 'true' 
         run: |
-            echo "PI:${{ inputs.push_image}}"
-            echo "FR:${{ inputs.first_release}}"
-            echo "PR:${{ inputs.previous_release_tag}}"
+            echo "Input PI:${{ inputs.push_image}}"
+            echo "ENV PI:${{ env.push_image}}"
+            echo "Input FR:${{ inputs.first_release}}"
+            echo "ENV FR:${{ env.first_release}}"
+            echo "Input PR:${{ inputs.previous_release_tag}}"
+            echo "Env PR:${{ env.previous_release_tag}}"
             if ${{ inputs.first_release}} == "true"
             then 
               echo "base_tag=$(git rev-list --max-parents=0 HEAD)" >> $GITHUB_OUTPUT
             else
-              echo "base_tag=${{ inputs.previous_release_tag }}" >> $GITHUB_OUTPUT
+              echo "base_tag=${{ env.previous_release_tag }}" >> $GITHUB_OUTPUT
             fi
 
 
