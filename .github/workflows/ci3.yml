@@ -16,7 +16,9 @@ on:
         description: 'first release' 
         default: 'test'    
         required: true
-        
+
+  release:
+    types: [published]      
         
   
 jobs:
