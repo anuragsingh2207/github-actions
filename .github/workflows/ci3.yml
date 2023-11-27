@@ -67,7 +67,7 @@ jobs:
         run: |
             echo "${{ needs.build1.outputs.base_tag }}"  
 
-   build3:
+  build3:
     needs: build1
     uses: ./.github/workflows/ci2.yml
     with: 
