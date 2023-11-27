@@ -2,6 +2,11 @@ name: Workflow 3
 on:
   workflow_dispatch:
     inputs:
+      push_image:
+        description: 'push image'  
+        default: 'true'   
+        required: true
+
       first_release:
         description: 'first release'  
         default: 'false'   
@@ -17,6 +22,7 @@ on:
 jobs:
   build1:
     runs-on: ubuntu-latest
+    if: github.event_name == "release"
     outputs: 
       base_tag: ${{ steps.set_base_tag.outputs.base_tag }}
     steps:
@@ -25,6 +31,7 @@ jobs:
 
       - name: Get First Commit 
         id: set_base_tag
+        if: ${{ github.event.inputs.push_image != 'false'}}
         run: |
             echo "FR:${{ github.event.inputs.first_release}}"
             echo "PR:${{ github.event.inputs.previous_release_tag}}"
