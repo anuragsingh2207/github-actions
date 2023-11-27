@@ -20,10 +20,10 @@ on:
   release:
     types: [published] 
 
-  env:
-    push_image: ${{ github.event_name == 'release' && 'true' || inputs.push_image }}
-    first_release: ${{ github.event_name == 'release' && 'false' || inputs.first_release }}
-    previous_release_tag: ${{ github.event_name == 'release' && 'test' || inputs.previous_release_tag }}
+env:
+  push_image: ${{ github.event_name == 'release' && 'true' || inputs.push_image }}
+  first_release: ${{ github.event_name == 'release' && 'false' || inputs.first_release }}
+  previous_release_tag: ${{ github.event_name == 'release' && 'test' || inputs.previous_release_tag }}
 
 
         
