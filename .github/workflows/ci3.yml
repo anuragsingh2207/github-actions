@@ -67,4 +67,10 @@ jobs:
         run: |
             echo "${{ needs.build1.outputs.base_tag }}"  
 
+   build3:
+    needs: build1
+    uses: ./.github/workflows/ci2.yml
+    with: 
+        commit_id: ${{ needs.build1.outputs.base_tag}}          
+
   
