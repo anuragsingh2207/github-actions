@@ -7,10 +7,7 @@ on:
         default: 'false'   
         required: true
         
-       
-
       previous_release_tag:
-        type: string
         description: 'first release' 
         default: 'test'    
         required: true
@@ -21,13 +18,13 @@ jobs:
   build1:
     runs-on: ubuntu-latest
     outputs: 
-      base_tag: ${{ steps.set_first_commit.outputs.base_tag }}
+      base_tag: ${{ steps.set_base_tag.outputs.base_tag }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
       - name: Get First Commit 
-        id: base_tag
+        id: set_base_tag
         run: |
             echo "FR:${{ github.event.inputs.first_release}}"
             echo "PR:${{ github.event.inputs.previous_release_tag}}"
