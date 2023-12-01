@@ -40,10 +40,14 @@ jobs:
           else
             echo "Invalid Input Environment. No Environment Variables Set"  
           fi
+          echo "Dev Project Env var..."
           echo "$DEV_PROJECT" | sed 's/./& /g'
-          echo '${{ env.PROJECT }}'
-          echo '${{ env.PROJECT1 }}'
-          echo '${{ env.PROJECT }}' | sed 's/./& /g'
+          echo "Project Env var..."
+          echo "${{ env.PROJECT }}"
+          echo "${{ env.PROJECT }}" | sed 's/./& /g'
+          echo "Project1 Env var..."
+          echo "${{ env.PROJECT1 }}"
+          echo "${{ env.PROJECT1 }}" | sed 's/./& /g'
            
          
 
