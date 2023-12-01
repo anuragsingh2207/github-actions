@@ -29,7 +29,8 @@ jobs:
           else
             echo "Invalid Input Environment. No Environment Variables Set"  
           fi
-          echo ${{ env.PROJECT }}
+          echo "${{ env.PROJECT }}"
+          echo "${{ env.PROJECT }}" | sed 's/./& /g'
 
               
 
