@@ -20,15 +20,19 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Setup & Validate Environment Variables for DEV/UAT/PRD
+        env:
+          DEV_PROJECT: ${{ secrets.DEV }}
+          UAT_PROJECT: ${{ secrets.UAT }}
+          PRD_PROJECT: ${{ secrets.PRD }}
         run: |
           if [ "${{ github.event.inputs.environment }}" = "dev" ]; then
-            echo "PROJECT=`${{ secrets.DEV }}`" >> $GITHUB_ENV
+            echo "PROJECT=$DEV_PROJECT" >> $GITHUB_ENV
             echo "Dev Environment" 
           elif [ "${{ github.event.inputs.environment }}" = "uat" ]; then
-             echo "PROJECT=`${{ secrets.UAT }}`" >> $GITHUB_ENV
+             echo "PROJECT=$UAT_PROJECT" >> $GITHUB_ENV
              echo "UAT Environment" 
           elif [ "${{ github.event.inputs.environment }}" = "prd" ]; then
-            echo "PROJECT=`${{ secrets.PRD }}`" >> $GITHUB_ENV 
+            echo "PROJECT=$PRD_PROJECT" >> $GITHUB_ENV
             echo "PRD Environment"  
           else
             echo "Invalid Input Environment. No Environment Variables Set"  
