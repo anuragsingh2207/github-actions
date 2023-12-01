@@ -1,0 +1,41 @@
+name: Workflow 4
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Select Environment'  
+        default: 'dev'   
+        required: true
+        options:
+            - dev
+            - uat
+            - prd
+
+jobs:
+  build1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup & Validate Environment Variables for DEV/UAT/PRD
+        run: |
+            echo ${{ github.event.inputs.environment }}
+            if ${{ github.event.inputs.environment }} == "dev"
+            then 
+              echo "PROJECT=${{ secrets.DEV }}" >> $GITHUB_ENV
+            elif ${{ github.event.inputs.environment }} == "uat"
+            then
+              echo "PROJECT=${{ secrets.UAT }}" >> $GITHUB_ENV
+            elif ${{ github.event.inputs.environment }} == "prd"
+            then
+              echo "PROJECT=${{ secrets.PRD }}" >> $GITHUB_ENV
+            else
+              echo "Invalid Input Environment. No Environment Variables Set"
+            fi
+             echo ${{ env.PROJECT }}
+
+              
+
+
+  
