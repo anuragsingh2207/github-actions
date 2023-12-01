@@ -27,6 +27,9 @@ jobs:
         run: |
           if [ "${{ github.event.inputs.environment }}" = "dev" ]; then
             echo "PROJECT=$DEV_PROJECT" >> $GITHUB_ENV
+            echo "Prinitng the Dev Secret..."
+            echo ${{ secrets.DEV }}
+            echo "PROJECT1=$(echo ${{ secrets.DEV }})" >> $GITHUB_ENV
             echo "Dev Environment" 
           elif [ "${{ github.event.inputs.environment }}" = "uat" ]; then
              echo "PROJECT=$DEV_PROJECT" >> $GITHUB_ENV
@@ -37,9 +40,12 @@ jobs:
           else
             echo "Invalid Input Environment. No Environment Variables Set"  
           fi
-          echo "$DEV_PROJECT"
+          echo "$DEV_PROJECT" | sed 's/./& /g'
           echo '${{ env.PROJECT }}'
+          echo '${{ env.PROJECT1 }}'
           echo '${{ env.PROJECT }}' | sed 's/./& /g'
+           
+         
 
               
 
