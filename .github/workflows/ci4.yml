@@ -4,12 +4,12 @@ on:
     inputs:
       environment:
         description: 'Select Environment'  
-        default: dev   
+        default: "dev"  
         required: true
         options:
-            - dev
-            - uat
-            - prd
+            - "dev"
+            - "uat"
+            - "prd"
 
 jobs:
   build1:
@@ -18,19 +18,29 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Setup & Validate Environment Variables for DEV/UAT/PRD
+      # - name: Setup & Validate Environment Variables for DEV/UAT/PRD
+      #   run: |
+      #       echo ${{ github.event.inputs.environment }}
+      #       if ${{ github.event.inputs.environment }} == dev ;then 
+      #         echo "PROJECT=${{ secrets.DEV }}" >> $GITHUB_ENV
+      #       elif ${{ github.event.inputs.environment }} == uat ;then 
+      #         echo "PROJECT=${{ secrets.UAT }}" >> $GITHUB_ENV
+      #       elif ${{ github.event.inputs.environment }} == prd;then 
+      #         echo "PROJECT=${{ secrets.PRD }}" >> $GITHUB_ENV
+      #       else
+      #         echo "Invalid Input Environment. No Environment Variables Set"
+      #       fi
+      #        echo ${{ env.PROJECT }}
+
+      - name: Check environment input
         run: |
-            echo ${{ github.event.inputs.environment }}
-            if ${{ github.event.inputs.environment }} == dev ;then 
-              echo "PROJECT=${{ secrets.DEV }}" >> $GITHUB_ENV
-            elif ${{ github.event.inputs.environment }} == uat ;then 
-              echo "PROJECT=${{ secrets.UAT }}" >> $GITHUB_ENV
-            elif ${{ github.event.inputs.environment }} == prd;then 
-              echo "PROJECT=${{ secrets.PRD }}" >> $GITHUB_ENV
-            else
-              echo "Invalid Input Environment. No Environment Variables Set"
-            fi
-             echo ${{ env.PROJECT }}
+          if [ "${{ github.event.inputs.environment }}" = "dev" ]; then
+            echo "Environment is dev"
+            # Other commands specific to the dev environment
+          else
+            echo "Environment is not dev"
+            # Other commands for other environments
+          fi
 
               
 
