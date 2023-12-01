@@ -4,6 +4,7 @@ on:
     inputs:
       environment:
         description: 'Select Environment'  
+        type: choice
         default: "dev"  
         required: true
         options:
