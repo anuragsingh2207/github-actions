@@ -26,20 +26,20 @@ jobs:
           PRD_PROJECT: ${{ secrets.PRD }}
         run: |
           if [ "${{ github.event.inputs.environment }}" = "dev" ]; then
-            echo "PROJECT=`$DEV_PROJECT`" >> $GITHUB_ENV
+            echo "PROJECT=$DEV_PROJECT" >> $GITHUB_ENV
             echo "Dev Environment" 
           elif [ "${{ github.event.inputs.environment }}" = "uat" ]; then
-             echo "PROJECT=$UAT_PROJECT" >> $GITHUB_ENV
+             echo "PROJECT=$DEV_PROJECT" >> $GITHUB_ENV
              echo "UAT Environment" 
           elif [ "${{ github.event.inputs.environment }}" = "prd" ]; then
-            echo "PROJECT=$PRD_PROJECT" >> $GITHUB_ENV
+            echo "PROJECT=$DEV_PROJECT" >> $GITHUB_ENV
             echo "PRD Environment"  
           else
             echo "Invalid Input Environment. No Environment Variables Set"  
           fi
           echo "$DEV_PROJECT"
-          echo "${{ env.PROJECT }}"
-          echo "${{ env.PROJECT }}" | sed 's/./& /g'
+          echo '${{ env.PROJECT }}'
+          echo '${{ env.PROJECT }}' | sed 's/./& /g'
 
               
 
