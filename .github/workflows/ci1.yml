@@ -4,7 +4,7 @@ on:
     branches: main
 
 env:
-  TEMP1: hello
+  TEMP1: hello-world
   
 jobs:
   build1:
@@ -20,7 +20,7 @@ jobs:
         run: |
             echo "FIRST_COMMIT=$(git rev-list --max-parents=0 HEAD)" >> $GITHUB_OUTPUT
             echo "FIRST_COMMIT1=$(git rev-list --max-parents=0 HEAD)" >> $GITHUB_ENV
-            echo "TEMP2=xyz" >> $GITHUB_ENV
+            echo "TEMP2=xyz-pqr" >> $GITHUB_ENV
 
       - name: Print First Commit 
         run: |
