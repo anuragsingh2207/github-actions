@@ -2,6 +2,9 @@ name: Workflow 1
 on:
   push:
     branches: main
+
+env:
+  TEMP1: hello
   
 jobs:
   build1:
@@ -17,29 +20,33 @@ jobs:
         run: |
             echo "FIRST_COMMIT=$(git rev-list --max-parents=0 HEAD)" >> $GITHUB_OUTPUT
             echo "FIRST_COMMIT1=$(git rev-list --max-parents=0 HEAD)" >> $GITHUB_ENV
+            echo "TEMP2=xyz" >> $GITHUB_ENV
 
       - name: Print First Commit 
         run: |
             echo "${{ env.FIRST_COMMIT1 }}"
             echo "Print the branch name"
             echo "${{ github.ref_name }}"
+            echo "TEMP1: ${{ env.TEMP1 }}"
+            echo "TEMP2: ${{ env.TEMP2 }}"
+            echo "TEMP2: ${TEMP2}"
 
-  build2:
-    runs-on: ubuntu-latest
-    needs: build1
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+  # build2:
+  #   runs-on: ubuntu-latest
+  #   needs: build1
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v3
 
-      - name: Print First Commit from Previous Job
-        run: |
-            echo "${{ needs.build1.outputs.FIRST_COMMIT }}"  
+  #     - name: Print First Commit from Previous Job
+  #       run: |
+  #           echo "${{ needs.build1.outputs.FIRST_COMMIT }}"  
 
-  build3:
-    needs: build1
-    uses: ./.github/workflows/ci2.yml
-    with: 
-        commit_id: ${{ needs.build1.outputs.FIRST_COMMIT }}
+  # build3:
+  #   needs: build1
+  #   uses: ./.github/workflows/ci2.yml
+  #   with: 
+  #       commit_id: ${{ needs.build1.outputs.FIRST_COMMIT }}
 
       
           
