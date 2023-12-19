@@ -1,0 +1,24 @@
+name: Dispatcher
+on:
+  push:
+    branches: [main]
+
+jobs:
+  dispatch:
+    name: Dispatch
+    # env:
+    #   PACKAGES_TO_UPGRADE: ${{ needs.run_publish.outputs.packages }}
+    runs-on: ubuntu-latest
+    # strategy:
+    #   matrix:
+    #     repo: ['anurag/repository-B', 'our-company/repository-C']
+    timeout-minutes: 5
+    steps:
+      - name: Dispatch to workflows
+        run: |
+            curl -H "Accept: application/vnd.github.everest-preview+json" \
+            -H "Authorization: token ${{ secrets.DISPATCH_TOKEN }}" \
+            --request POST \
+            --data '{"event_type": "some_event", "client_payload": { "foo": "bar" }}' https://api.github.com/repos/anuragsingh2207/github-actions-2/dispatches
+
+  
