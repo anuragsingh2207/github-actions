@@ -6,12 +6,7 @@ on:
 jobs:
   dispatch:
     name: Dispatch
-    # env:
-    #   PACKAGES_TO_UPGRADE: ${{ needs.run_publish.outputs.packages }}
     runs-on: ubuntu-latest
-    # strategy:
-    #   matrix:
-    #     repo: ['anurag/repository-B', 'our-company/repository-C']
     timeout-minutes: 5
     steps:
       - name: Dispatch to workflows
