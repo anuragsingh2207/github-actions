@@ -18,7 +18,7 @@ jobs:
               "event_type": "Dispatch and Receive",
               "client_payload": {
                 "foo": "bar",
-                "branch": "develop"  
+                "ref": "develop"  
               }
             }' \
             https://api.github.com/repos/anuragsingh2207/github-actions-2/dispatches
