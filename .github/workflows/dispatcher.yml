@@ -22,5 +22,5 @@ jobs:
                 "env": "dev"
               }
             }' \
-            https://api.github.com/repos/anuragsingh2207/github-actions-2/actions/workflows/receiver.yml/dispatches
+            https://api.github.com/repos/anuragsingh2207/github-actions-2/dispatches
 
