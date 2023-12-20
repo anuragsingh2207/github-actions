@@ -18,7 +18,7 @@ jobs:
               "event_type": "build-dispatch",
               "client_payload": {
                 "foo": "bar",
-                "ref": "develop"
+                "ref": "develop",
                 "env": "dev"
               }
             }' \
