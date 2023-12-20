@@ -1,4 +1,4 @@
-name: Workflow 3
+name: Multiple Event Trigger Workflow
 on:
   workflow_dispatch:
     inputs:

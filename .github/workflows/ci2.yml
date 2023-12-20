@@ -1,4 +1,4 @@
-name: Workflow 2
+name: Re-usable Workflow
 on:
   workflow_call:
     inputs:

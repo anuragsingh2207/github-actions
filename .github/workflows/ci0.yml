@@ -1,11 +1,7 @@
-name: Workflow 0
+name: Scheduled Workflow
 on:
-  push:
-    branches: main
-
-  # Uncomment below for scheduled workflow
-  # schedule:
-  #   - cron: '*/15 * * * *'  # Runs at every 15th min
+  schedule:
+    - cron: '* * 29 2 *'  # Runs at every leap year 29th Feb
   
 jobs:
   build:
