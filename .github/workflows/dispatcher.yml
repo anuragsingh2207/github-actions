@@ -14,6 +14,11 @@ jobs:
             curl -H "Accept: application/vnd.github.everest-preview+json" \
             -H "Authorization: token ${{ secrets.DISPATCH_TOKEN }}" \
             --request POST \
-            --data '{"event_type": "Dispatch and Receive", "client_payload": { "foo": "bar" }, "branch": "develop"}' https://api.github.com/repos/anuragsingh2207/github-actions-2/dispatches
-
-  
+            --data '{
+              "event_type": "Dispatch and Receive",
+              "client_payload": {
+                "foo": "bar",
+                "branch": "develop"  
+              }
+            }' \
+            https://api.github.com/repos/anuragsingh2207/github-actions-2/dispatches
