@@ -15,7 +15,7 @@ jobs:
             -H "Authorization: token ${{ secrets.DISPATCH_TOKEN }}" \
             --request POST \
             --data '{
-              "event_type": "Dispatch and Receive",
+              "event_type": "build-dispatch",
               "client_payload": {
                 "foo": "bar",
                 "ref": "develop"  
