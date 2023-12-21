@@ -4,7 +4,7 @@ on:
     inputs:
       build_deploy:
         type: choice
-        description: 'Build & Deploy ?'  
+        description: 'Deploy ?'  
         default: true   
         required: true
         options:
@@ -25,7 +25,7 @@ jobs:
               "event_type": "build-dispatch-1",
               "client_payload": {
                 "foo": "bar",
-                "deploy": "${{ inputs.deploy }}"
+                "deploy": "${{ github.event.inputs.deploy }}"
               }
             }' \
             https://api.github.com/repos/anuragsingh2207/github-actions-2/dispatches
