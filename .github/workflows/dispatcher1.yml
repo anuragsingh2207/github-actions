@@ -4,7 +4,7 @@ on:
     inputs:
       build_deploy:
         type: choice
-        description: 'Deploy ?'  
+        description: 'Build & Deploy ?'  
         default: true   
         required: true
         options:
