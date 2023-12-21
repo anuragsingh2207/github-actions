@@ -1,25 +1,31 @@
-name: Dispatcher
+name: Dispatcher 1
 on:
-  push:
-    branches: [main]
-
+  workflow_dispatch:
+    inputs:
+      build_deploy:
+        type: choice
+        description: 'Build & Deploy ?'  
+        default: true   
+        required: true
+        options:
+          - true
+          - false
 jobs:
   dispatch:
-    name: Dispatch
+    name: Dispatch1
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - name: Dispatch to workflows
+      - name: Dispatcher1 to Receiver1
         run: |
             curl -H "Accept: application/vnd.github.everest-preview+json" \
             -H "Authorization: token ${{ secrets.DISPATCH_TOKEN }}" \
             --request POST \
             --data '{
-              "event_type": "build-dispatch",
+              "event_type": "build-dispatch-1",
               "client_payload": {
                 "foo": "bar",
-                "ref": "develop",
-                "env": "dev"
+                "deploy": "${{ inputs.deploy }}"
               }
             }' \
             https://api.github.com/repos/anuragsingh2207/github-actions-2/dispatches
