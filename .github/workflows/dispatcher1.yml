@@ -4,12 +4,17 @@ on:
     inputs:
       build_deploy:
         type: choice
-        description: 'Build & Deploy ?'  
+        description: 'Deploy (true/false)'  
         default: true   
         required: true
         options:
           - true
           - false
+      tag:
+        description: 'Docker Image Tag'  
+        default: 'v1.0.1'   
+        required: true
+
 jobs:
   dispatch:
     name: Dispatch1
@@ -25,6 +30,7 @@ jobs:
               "event_type": "build-dispatch-1",
               "client_payload": {
                 "foo": "bar",
+                "tag": "${{ github.event.inputs.tag }}"
                 "deploy": "'${{ github.event.inputs.build_deploy }}'"
               }
             }' \
