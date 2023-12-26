@@ -30,7 +30,7 @@ jobs:
               "event_type": "build-dispatch-1",
               "client_payload": {
                 "foo": "bar",
-                "tag": "${{ github.event.inputs.tag }}"
+                "tag": "${{ github.event.inputs.tag }}",
                 "deploy": "'${{ github.event.inputs.build_deploy }}'"
               }
             }' \
