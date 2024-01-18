@@ -1,0 +1,44 @@
+name: Dispatch to Re-usable Workflow 
+on:
+  push:
+    branches: main
+
+env:
+  TEMP1: hello-world
+  
+jobs:
+  build1:
+    runs-on: ubuntu-latest
+    outputs: 
+      FIRST_COMMIT: ${{ steps.set_first_commit.outputs.FIRST_COMMIT }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Get First Commit 
+        id: set_first_commit
+        run: |
+            echo "FIRST_COMMIT=$(git rev-list --max-parents=0 HEAD)" >> $GITHUB_OUTPUT
+            echo "FIRST_COMMIT1=$(git rev-list --max-parents=0 HEAD)" >> $GITHUB_ENV
+            echo "TEMP2=xyz-pqr" >> $GITHUB_ENV
+
+      - name: Print First Commit 
+        run: |
+            echo "${{ env.FIRST_COMMIT1 }}"
+            echo "Print the branch name"
+            echo "${{ github.ref_name }}"
+            echo "TEMP1: ${{ env.TEMP1 }}"
+            echo "TEMP2: ${{ env.TEMP2 }}"
+            echo "TEMP2: ${TEMP2}"
+
+  dispatch:
+    needs: build1
+    uses: anuragsingh2207/github-actions-2/blob/main/.github/workflows/receiver.yml@main
+    with: 
+        commit_id: ${{ needs.build1.outputs.FIRST_COMMIT }}
+
+      
+          
+         
+        
+      
