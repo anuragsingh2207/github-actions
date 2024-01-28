@@ -13,7 +13,7 @@ on:
             - "prd"
 
 env:
-      ENVIRONMENT: ${{ github.event.input.environment }}
+      ENVIRONMENT: ${{ github.event.inputs.environment }}
 
 jobs:
   build1:
