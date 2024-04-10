@@ -12,6 +12,13 @@ on:
             - "uat"
             - "prd"
 
+      msg:
+        description: 'Message'  
+        type: string
+        default: "hello"  
+        required: true
+        
+
 env:
       ENVIRONMENT: ${{ github.event.inputs.environment }}
 
