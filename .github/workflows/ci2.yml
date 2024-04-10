@@ -5,6 +5,9 @@ on:
       commit_id:
         required: true
         type: string
+      msg:
+        required: true
+        default: 'hello'
 
 jobs:
   build4:
