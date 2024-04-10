@@ -17,6 +17,11 @@ on:
         type: string
         default: "hello"  
         required: true
+
+      msg1:
+        description: 'Message1'  
+        default: "world"  
+        required: true
         
 
 env:
