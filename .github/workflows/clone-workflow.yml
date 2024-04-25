@@ -1,0 +1,29 @@
+name: Workflow to clone other repo 
+on:
+  push:
+    branches: main
+
+jobs:
+  clone-repo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone other repo
+        uses: actions/checkout@v3
+        with:
+          repository: anuragsingh2207/github-actions-2
+          ref: main
+          path: $GITHUB_WORKSPACE
+
+      - name: Validate clone of other repo 
+        run: |
+            cd $GITHUB_WORKSPACE
+            pwd
+            ls .github/workflows/
+
+      
+
+      
+          
+         
+        
+      
