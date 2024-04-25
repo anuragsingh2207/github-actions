@@ -12,12 +12,13 @@ jobs:
         with:
           repository: anuragsingh2207/github-actions-2
           ref: main
-          path: $GITHUB_WORKSPACE
+          path: github-actions-2
 
       - name: Validate clone of other repo 
         run: |
             echo $GITHUB_WORKSPACE
-            cd $GITHUB_WORKSPACE
+            cd github-actions-2
+            pwd
             ls -alrtgh
 
       
