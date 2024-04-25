@@ -23,6 +23,7 @@ jobs:
 
       - name: Generate Summary Post Clone
         run: |
+          cd cd github-actions-2
           echo "Branch Cloned: $(git rev-parse --abrev-ref HEAD)" >> $GITHUB_STEP_SUMMARY
 
       
