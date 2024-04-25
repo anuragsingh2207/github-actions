@@ -16,7 +16,6 @@ jobs:
 
       - name: Validate clone of other repo 
         run: |
-            cd $GITHUB_WORKSPACE
             pwd
             ls -alrtgh
 
