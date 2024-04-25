@@ -24,7 +24,9 @@ jobs:
       - name: Generate Summary Post Clone
         run: |
           cd github-actions-2
-          echo "Branch Cloned: `$(git log -1)`" >> $GITHUB_STEP_SUMMARY
+          pwd
+          ls -alrtgh
+          echo "Clone Successful" >> $GITHUB_STEP_SUMMARY
 
       
 
