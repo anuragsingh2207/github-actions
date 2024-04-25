@@ -21,6 +21,10 @@ jobs:
             pwd
             ls -alrtgh
 
+      - name: Generate Summary Post Clone
+        run: |
+          echo "Branch Cloned: $(git rev-parse --abrev-ref HEAD)" >> $GITHUB_STEP_SUMMARY
+
       
 
       
