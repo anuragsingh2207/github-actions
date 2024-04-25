@@ -16,6 +16,7 @@ jobs:
 
       - name: Validate clone of other repo 
         run: |
+            cd /home/runner/work/github-actions2/github-actions2
             pwd
             ls -alrtgh
 
