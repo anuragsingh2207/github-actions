@@ -14,22 +14,19 @@ jobs:
           ref: main
           path: github-actions-2
 
-      - name: Validate clone of other repo 
+      - name: Validate clone and Fetch First Commit
         run: |
             echo $GITHUB_WORKSPACE
             cd github-actions-2
             pwd
             ls -alrtgh
+            echo "Setting First Commit..."
+            echo "FIRST_COMMIT=$(git rev-list --max-parents=0 HEAD)" >> $GITHUB_ENV
+         
 
       - name: Generate Summary Post Clone
         run: |
-          cd github-actions-2
-          pwd
-          ls -alrtgh
-          echo "Before First Commit..."
-          echo "FIRST_COMMIT=$(git rev-list --max-parents=0 HEAD)" >> $GITHUB_ENV
           echo "Clone Successful" >> $GITHUB_STEP_SUMMARY
-          echo "After Clone ..."
           echo "First Commit: ${{ env.FIRST_COMMIT }}" >> $GITHUB_STEP_SUMMARY
 
       
