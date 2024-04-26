@@ -24,11 +24,7 @@ jobs:
             echo "BRANCH_CLONED=$(git rev-parse --abbrev-ref HEAD)" >> $GITHUB_ENV
             echo "Print output of git log -1"
             git log -1
-            echo "Store the output of the command in a temporary file"
-            git log -1 > temp_file.txt
-            echo "LAST_COMMIT=$(cat temp_file.txt)" >> $GITHUB_ENV
-            echo "Clean up: Remove the temporary file"
-            rm temp_file.txt
+            echo "LAST_COMMIT=$(git log --pretty=format:'%B' -1)" >> $GITHUB_ENV
             echo "LAST_COMMIT_SHA=$(git rev-parse HEAD)" >> $GITHUB_ENV
          
 
