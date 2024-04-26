@@ -26,9 +26,9 @@ jobs:
           cd github-actions-2
           pwd
           ls -alrtgh
-          echo "LAST_COMMIT=$(git log -1)" >> $GITHUB_ENV
+          echo "CLONED_BRANCH=$(git branch)" >> $GITHUB_ENV
           echo "Clone Successful" >> $GITHUB_STEP_SUMMARY
-          echo "Last Commit: ${LAST_COMMIT}" >> $GITHUB_STEP_SUMMARY
+          echo "Cloned Branch: ${CLONED_BRANCH}" >> $GITHUB_STEP_SUMMARY
 
       
 
