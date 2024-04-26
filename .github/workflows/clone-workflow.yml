@@ -14,20 +14,25 @@ jobs:
           ref: main
           path: github-actions-2
 
-      - name: Validate clone and Fetch First Commit
+      - name: Validate clone and Fetch Commit Details
         run: |
-            echo $GITHUB_WORKSPACE
             cd github-actions-2
+            echo "Clone Successful.."
             pwd
             ls -alrtgh
-            echo "Setting First Commit..."
-            echo "FIRST_COMMIT=$(git rev-list --max-parents=0 HEAD)" >> $GITHUB_ENV
+            echo "Fetch Commit Details..."
+            echo "BRANCH_CLONED=$(git rev-parse --abbrev-ref HEAD)" >> $GITHUB_ENV
+            echo "LAST_COMMIT=$(git log -1)" >> $GITHUB_ENV
+            echo "LAST_COMMIT_SHA=$(git rev-parse HEAD)" >> $GITHUB_ENV
          
 
       - name: Generate Summary Post Clone
         run: |
-          echo "Clone Successful" >> $GITHUB_STEP_SUMMARY
-          echo "First Commit: ${{ env.FIRST_COMMIT }}" >> $GITHUB_STEP_SUMMARY
+          echo "Clone Successful..." >> $GITHUB_STEP_SUMMARY
+          echo "Branch Cloned: ${{ env.BRANCH_CLONED }}" >> $GITHUB_STEP_SUMMARY
+          echo "Last Commit: ${{ env.LAST_COMMIT }}" >> $GITHUB_STEP_SUMMARY
+          echo "Last Commit SHA: ${{ env.LAST_COMMIT_SHA }}" >> $GITHUB_STEP_SUMMARY
+
 
       
 
