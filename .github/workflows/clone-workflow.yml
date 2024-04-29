@@ -32,7 +32,7 @@ jobs:
         run: |
           echo "Clone Successful..." >> $GITHUB_STEP_SUMMARY
           echo "Branch Cloned: ${{ env.BRANCH_CLONED }}" >> $GITHUB_STEP_SUMMARY
-          echo "Last Commit: ${{ env.LAST_COMMIT }}" >> $GITHUB_STEP_SUMMARY
+          echo "Last Commit Details: ${{ env.LAST_COMMIT }}" >> $GITHUB_STEP_SUMMARY
           echo "Last Commit SHA: ${{ env.LAST_COMMIT_SHA }}" >> $GITHUB_STEP_SUMMARY
 
 
