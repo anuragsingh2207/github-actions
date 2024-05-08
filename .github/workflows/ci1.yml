@@ -46,7 +46,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: build1
     uses: ./.github/workflows/ci2.yml
-    with: 
+     with: 
         commit_id: ${{ needs.build1.outputs.FIRST_COMMIT }}
 
       
