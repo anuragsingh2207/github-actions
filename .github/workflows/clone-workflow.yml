@@ -24,7 +24,7 @@ jobs:
             echo "BRANCH_CLONED=$(git rev-parse --abbrev-ref HEAD)" >> $GITHUB_ENV
             echo "Print output of git log -1"
             git log -1
-            echo "LAST_COMMIT=$(git log --pretty=format:'Name:%an, Message: %s, Date: %ad' -1)" >> $GITHUB_ENV
+            echo "LAST_COMMIT=$(git log --pretty=format:'Committer Name:%an, Commit Message: %s, Commit SHA: %H, Commit Date: %ad' -1)" >> $GITHUB_ENV
             echo "LAST_COMMIT_SHA=$(git rev-parse HEAD)" >> $GITHUB_ENV
          
 
@@ -33,7 +33,7 @@ jobs:
           echo "Clone Successful..." >> $GITHUB_STEP_SUMMARY
           echo "Branch Cloned: ${{ env.BRANCH_CLONED }}" >> $GITHUB_STEP_SUMMARY
           echo "Last Commit Details: ${{ env.LAST_COMMIT }}" >> $GITHUB_STEP_SUMMARY
-          echo "Last Commit SHA: ${{ env.LAST_COMMIT_SHA }}" >> $GITHUB_STEP_SUMMARY
+          echo "### Last Commit SHA: ${{ env.LAST_COMMIT_SHA }}" >> $GITHUB_STEP_SUMMARY
 
 
       
