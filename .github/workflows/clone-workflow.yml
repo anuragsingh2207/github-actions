@@ -5,6 +5,7 @@ on:
 
 jobs:
   clone-repo:
+    name: Clone Repo
     runs-on: ubuntu-latest
     steps:
       - name: Clone other repo
@@ -24,16 +25,17 @@ jobs:
             echo "BRANCH_CLONED=$(git rev-parse --abbrev-ref HEAD)" >> $GITHUB_ENV
             echo "Print output of git log -1"
             git log -1
-            echo "LAST_COMMIT=$(git log --pretty=format:'Committer Name:%an, Commit Message: %s, Commit SHA: %H, Commit Date: %ad' -1)" >> $GITHUB_ENV
+            echo "LAST_COMMIT=$(git log --pretty=format:'Committer Name:%an, Commit Message: %s, Commit Date: %ad' -1)" >> $GITHUB_ENV
             echo "LAST_COMMIT_SHA=$(git rev-parse HEAD)" >> $GITHUB_ENV
+            echo "LAST_COMMIT_SHA_URL=https://github.com/anuragsingh2207/github-actions/commit/$(git rev-parse HEAD)" >> $GITHUB_ENV
+            
          
 
       - name: Generate Summary Post Clone
         run: |
-          echo "Clone Successful..." >> $GITHUB_STEP_SUMMARY
           echo "Branch Cloned: ${{ env.BRANCH_CLONED }}" >> $GITHUB_STEP_SUMMARY
-          echo "Last Commit Details: ${{ env.LAST_COMMIT }}" >> $GITHUB_STEP_SUMMARY
-          echo "### Last Commit SHA: ${{ env.LAST_COMMIT_SHA }}" >> $GITHUB_STEP_SUMMARY
+          echo "###Last Commit Details: ${{ env.LAST_COMMIT }}" >> $GITHUB_STEP_SUMMARY
+          echo "##Last Commit SHA URL: ${{ env.LAST_COMMIT_SHA_URL }}" >> $GITHUB_STEP_SUMMARY
 
 
       
