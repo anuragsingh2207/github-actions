@@ -35,7 +35,7 @@ jobs:
           echo "##### Branch Cloned: ${{ env.BRANCH_CLONED }}" >> $GITHUB_STEP_SUMMARY
           echo "##### Last Commit Details: ${{ env.LAST_COMMIT }}" >> $GITHUB_STEP_SUMMARY
           echo "##### Last Commit SHA: ${{ env.LAST_COMMIT_SHA }}" >> $GITHUB_STEP_SUMMARY
-          echo "##### Last Commit SHA URL: (https://github.com/anuragsingh2207/github-actions/commit/${{ env.LAST_COMMIT_SHA }})" >> $GITHUB_STEP_SUMMARY
+          echo "##### Last Commit SHA URL: (https://github.com/anuragsingh2207/github-actions-2/commit/${{ env.LAST_COMMIT_SHA }})" >> $GITHUB_STEP_SUMMARY
 
 
       
