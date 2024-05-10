@@ -23,7 +23,7 @@ jobs:
             echo "LAST_COMMIT_SHA=$(git rev-parse HEAD)" >> $GITHUB_ENV
       
       - name: Validate and Set Path
-         run: |
+        run: |
             echo "Current working directory:"
             pwd
             echo "Listing Files..."
