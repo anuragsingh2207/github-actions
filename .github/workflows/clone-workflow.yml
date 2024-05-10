@@ -17,6 +17,11 @@ jobs:
 
       - name: Validate clone and Fetch Commit Details
         run: |
+            echo "Current working directory:"
+            pwd 
+            echo "Listing Files..."
+            ls -al
+            echo "Change to cloned directory:"
             cd github-actions-2
             echo "BRANCH_CLONED=$(git rev-parse --abbrev-ref HEAD)" >> $GITHUB_ENV
             echo "LAST_COMMIT=$(git log --pretty=format:'Committer Name:%an, Commit Message: %s, Commit Date: %ad' -1)" >> $GITHUB_ENV
@@ -30,8 +35,9 @@ jobs:
             ls -al
             echo "Listing Files recursively..."
             ls -alR
+            ls -alR /home/runner/work/github-actions/github-actions/
 
-      - name: Validate clone and Fetch Commit Details
+      - name: Run cloned worflow
         uses: ./github-actions-2/.github/workflows/actions
         with: 
          message: 'Hello World!!!'      
