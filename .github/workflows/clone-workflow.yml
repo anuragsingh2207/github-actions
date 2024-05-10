@@ -34,7 +34,7 @@ jobs:
       - name: Validate clone and Fetch Commit Details
         uses: ./.github/actions
         with: 
-        message: 'Hello World!!!'      
+         message: 'Hello World!!!'      
       
       - name: Generate Summary Post Clone
         run: |
