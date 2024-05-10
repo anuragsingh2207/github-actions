@@ -18,28 +18,34 @@ jobs:
       - name: Validate clone and Fetch Commit Details
         run: |
             cd github-actions-2
-            echo "Clone Successful.."
-            pwd
-            ls -alrtgh
-            echo "Fetch Commit Details..."
             echo "BRANCH_CLONED=$(git rev-parse --abbrev-ref HEAD)" >> $GITHUB_ENV
-            echo "Print output of git log -1"
-            git log -1
             echo "LAST_COMMIT=$(git log --pretty=format:'Committer Name:%an, Commit Message: %s, Commit Date: %ad' -1)" >> $GITHUB_ENV
             echo "LAST_COMMIT_SHA=$(git rev-parse HEAD)" >> $GITHUB_ENV
-            
-         
+      
+      - name: Validate and Set Path
+         run: |
+            echo "Current working directory:"
+            pwd
+            echo "Listing Files..."
+            ls -al
+            echo "Listing Files recursively..."
+            ls -alR
 
+      - name: Validate clone and Fetch Commit Details
+        uses: ./.github/actions
+        with: 
+        message: 'Hello World!!!'      
+      
       - name: Generate Summary Post Clone
         run: |
-          echo "##### Branch Cloned: ${{ env.BRANCH_CLONED }}" >> $GITHUB_STEP_SUMMARY
-          echo "##### Last Commit Details: ${{ env.LAST_COMMIT }}" >> $GITHUB_STEP_SUMMARY
-          echo "##### Last Commit SHA: ${{ env.LAST_COMMIT_SHA }}" >> $GITHUB_STEP_SUMMARY
-          echo "##### Last Commit SHA URL: (https://github.com/anuragsingh2207/github-actions-2/commit/${{ env.LAST_COMMIT_SHA }})" >> $GITHUB_STEP_SUMMARY
+          echo "Branch Cloned: ${{ env.BRANCH_CLONED }}" >> $GITHUB_STEP_SUMMARY
+          echo "Last Commit Details: ${{ env.LAST_COMMIT }}" >> $GITHUB_STEP_SUMMARY
+          echo "Last Commit SHA: ${{ env.LAST_COMMIT_SHA }}" >> $GITHUB_STEP_SUMMARY
+          echo "Last Commit SHA URL: (https://github.com/anuragsingh2207/github-actions-2/commit/${{ env.LAST_COMMIT_SHA }})" >> $GITHUB_STEP_SUMMARY
 
 
-      
 
+    
       
           
          
