@@ -13,7 +13,7 @@ jobs:
         with:
           repository: anuragsingh2207/github-actions-2
           ref: main
-          path: github-actions-2
+          path: germany/github-actions-2
 
       - name: Validate clone and Fetch Commit Details
         run: |
@@ -22,7 +22,7 @@ jobs:
             echo "Listing Files..."
             ls -al
             echo "Change to cloned directory:"
-            cd github-actions-2
+            cd germany/github-actions-2
             echo "Current working directory:"
             pwd
             echo "BRANCH_CLONED=$(git rev-parse --abbrev-ref HEAD)" >> $GITHUB_ENV
@@ -38,9 +38,15 @@ jobs:
             echo "Listing Files recursively..."
             ls -alR
             ls -alR /home/runner/work/github-actions/github-actions/
+            echo "Workspace: $GITHUB_WORKSPACE"
+            cd $GITHUB_WORKSPACE
+            echo "Current working directory:"
+            pwd
+            echo "Listing Files..."
+            ls -al
 
       - name: Run cloned worflow
-        uses: /home/runner/work/github-actions/github-actions/github-actions-2/.github/workflows/actions
+        uses: ./germany/github-actions-2/.github/workflows/actions
         with: 
          message: 'Hello World!!!'      
       
