@@ -64,14 +64,21 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Print First Commit from Previous Job
+      - name: Print First Commit from Previous Job (Depends on Build1)
         run: |
             echo "${{ needs.build1.outputs.base_tag }}"  
 
   build3:
-    needs: build1
-    uses: ./.github/workflows/ci2.yml
-    with: 
-        commit_id: ${{ needs.build1.outputs.base_tag}}          
+    needs: build2
+    # uses: ./.github/workflows/ci2.yml
+    # with: 
+    #     commit_id: ${{ needs.build1.outputs.base_tag}}    
+     steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Print First Commit from Previous Job ( Depends on Build2)
+        run: |
+            echo "${{ needs.build1.outputs.base_tag }}"        
 
   
