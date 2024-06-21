@@ -17,8 +17,8 @@ on:
         default: 'test'    
         required: true
 
-  release:
-    types: [published] 
+  # release:
+  #   types: [published] 
 
 env:
   push_image: ${{ github.event_name == 'release' && 'true' || inputs.push_image }}
@@ -31,7 +31,7 @@ env:
 jobs:
   build1:
     runs-on: ubuntu-latest
-    if: github.event_name == 'release'
+    # if: github.event_name == 'release'
     outputs: 
       base_tag: ${{ steps.set_base_tag.outputs.base_tag }}
     steps:
@@ -40,7 +40,7 @@ jobs:
 
       - name: Set base_tag
         id: set_base_tag
-        if: github.event.inputs.push_image == ''    # <= Condition for testing workflow 
+        # if: github.event.inputs.push_image == ''    # <= Condition for testing workflow 
         #if: github.event.inputs.push_image != '' || github.event.inputs.push_image == 'true'  # <= Actual condition
         run: |
             echo "Input PI:${{ inputs.push_image}}"
