@@ -32,11 +32,11 @@ jobs:
             echo "TEMP2: ${TEMP2}"
 
   deploy:
-    runs-on: ubuntu-latest
+    
     needs: build
     environment:
       name: Production
-     
+    runs-on: ubuntu-latest 
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
