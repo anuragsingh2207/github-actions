@@ -47,4 +47,5 @@ jobs:
 
       - name: Print Env Var for Production GitHub Environment
         run: |
+            echo "Hello"
             echo "${{ env.PROD_ENV_VAR }}"
