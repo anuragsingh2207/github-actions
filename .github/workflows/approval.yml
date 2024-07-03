@@ -36,6 +36,7 @@ jobs:
     environment:
       name: production
     runs-on: ubuntu-latest 
+    
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -44,6 +45,6 @@ jobs:
         run: |
             echo "${{ needs.build.outputs.FIRST_COMMIT }}"  
 
-       - name: Print Env Var for Production GitHub Environment
+      - name: Print Env Var for Production GitHub Environment
         run: |
             echo "${{ env.PROD_ENV_VAR }}"
