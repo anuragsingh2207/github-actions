@@ -32,10 +32,9 @@ jobs:
             echo "TEMP2: ${TEMP2}"
 
   deploy:
-    
     needs: build
     environment:
-      name: Production
+      name: production
     runs-on: ubuntu-latest 
     steps:
       - name: Checkout code
