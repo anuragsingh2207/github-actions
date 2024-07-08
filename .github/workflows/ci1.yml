@@ -22,6 +22,7 @@ jobs:
             echo "FIRST_COMMIT=$(git rev-list --max-parents=0 HEAD)" >> $GITHUB_OUTPUT
             echo "FIRST_COMMIT1=$(git rev-list --max-parents=0 HEAD)" >> $GITHUB_ENV
             echo "TEMP2=xyz-pqr" >> $GITHUB_ENV
+            echo "hello"
 
       - name: Print First Commit 
         run: |
