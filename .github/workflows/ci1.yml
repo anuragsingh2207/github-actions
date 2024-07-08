@@ -8,7 +8,7 @@ env:
   
 jobs:
   build1:
-    if : ${{ github.event_name != 'push' }} || ${{ github.ref_name != 'main' }}
+    if : ${{ github.event_name == 'push' }} || ${{ github.ref_name == 'main' }}
     runs-on: ubuntu-latest
     outputs: 
       FIRST_COMMIT: ${{ steps.set_first_commit.outputs.FIRST_COMMIT }}
