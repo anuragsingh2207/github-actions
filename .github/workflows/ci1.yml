@@ -1,7 +1,9 @@
 name: Invoke Re-usable Workflow 
 on:
   push:
-    branches: [main,feature1]
+    branches: 
+      - main
+      - feature1
 
 env:
   TEMP1: hello-world
