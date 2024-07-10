@@ -33,7 +33,7 @@ jobs:
             echo "TEMP1: ${{ env.TEMP1 }}"
             echo "TEMP2: ${{ env.TEMP2 }}"
             echo "TEMP2: ${TEMP2}"
-            echo "{{ env.TEST }}"
+            echo "TEST:${{ env.TEST }}"
 
   build2:
     runs-on: ubuntu-latest
