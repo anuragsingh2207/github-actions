@@ -21,6 +21,7 @@ jobs:
         run: |
             echo "FIRST_COMMIT=$(git rev-list --max-parents=0 HEAD)" >> $GITHUB_OUTPUT
             echo "FIRST_COMMIT1=$(git rev-list --max-parents=0 HEAD)" >> $GITHUB_ENV
+            echo "TEST=${{ env.TEMP1 }}" >> $GITHUB_ENV
             echo "TEMP2=xyz-pqr" >> $GITHUB_ENV
             echo "hello"
 
@@ -32,6 +33,7 @@ jobs:
             echo "TEMP1: ${{ env.TEMP1 }}"
             echo "TEMP2: ${{ env.TEMP2 }}"
             echo "TEMP2: ${TEMP2}"
+            echo "{{ env.TEST }}"
 
   build2:
     runs-on: ubuntu-latest
