@@ -35,6 +35,13 @@ jobs:
             echo "TEMP2: ${TEMP2}"
             echo "TEST:${{ env.TEST }}"
 
+      - name: Run a multi-line script
+        run: |
+          #!/bin/bash
+          fruits=("apple" "banana" "orange")
+          echo "${fruits[@]}"
+        shell: bash
+
   build2:
     runs-on: ubuntu-latest
     needs: build1
