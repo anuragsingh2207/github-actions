@@ -1,6 +1,10 @@
 name: Docker Build & Push 
 
 on:
+  push:
+    branches:
+      - feature/*
+
   workflow_dispatch:
     inputs:
       tag:
@@ -11,6 +15,7 @@ on:
 env:
   DOCKER_REPO: repo1
   APP_NAME: app1
+  tag: x1
   
 jobs:
   docker_build:
