@@ -1,5 +1,10 @@
 name: Dispatch to Re-usable Workflow 
 on:
+  pull_request:
+   types: [opened, reopened]
+   branches:
+     - '*UAT'
+     - '*uat'
   push:
     branches: main
 
